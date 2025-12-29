@@ -13,9 +13,9 @@ func TestGetAPIKey(t *testing.T) {
 		wantErrString string
 	}{
 		{
-			name:    "No Authorization Header",
-			headers: http.Header{},
-			want:    "",
+			name:          "No Authorization Header",
+			headers:       http.Header{},
+			want:          "",
 			wantErrString: ErrNoAuthHeaderIncluded.Error(),
 		},
 		{
@@ -23,7 +23,7 @@ func TestGetAPIKey(t *testing.T) {
 			headers: http.Header{
 				"Authorization": []string{"ApiKey my-secret-key"},
 			},
-			want:    "my-secret-key",
+			want:          "my-secret-key",
 			wantErrString: "",
 		},
 		{
@@ -31,7 +31,7 @@ func TestGetAPIKey(t *testing.T) {
 			headers: http.Header{
 				"Authorization": []string{"ApiKeymy-secret-key"},
 			},
-			want:    "",
+			want:          "",
 			wantErrString: "malformed authorization header",
 		},
 		{
@@ -39,7 +39,7 @@ func TestGetAPIKey(t *testing.T) {
 			headers: http.Header{
 				"Authorization": []string{"Bearer my-secret-key"},
 			},
-			want:    "",
+			want:          "",
 			wantErrString: "malformed authorization header",
 		},
 	}
